@@ -12,7 +12,9 @@ export const Headers = () => {
   console.log('user:', user)
   let dispatch=useDispatch()
   let [value,setvalue]=useState();
-  const isLoggedIn=useSelector(state=>state.isLoggedIn)
+  const isLoggedIn=useSelector(state=>state.isLoggedIn);
+  let Name=localStorage.getItem('name');
+  console.log(Name)
   return (
     <div>
      <AppBar sx={{backgroundColor:
@@ -52,10 +54,10 @@ export const Headers = () => {
   </>}
    {isLoggedIn && 
    <>
-
+   <Typography>{Name}</Typography>
    <InsertEmoticonOutlinedIcon
    sx={{marginTop:2,marginRight:2}}
-   >{'user'}</InsertEmoticonOutlinedIcon>
+   ></InsertEmoticonOutlinedIcon>
    <Button 
    onClick={()=>dispatch((authActions.logout()))}
    sx={{margin:1, borderRadius:5}} variant='contained' 

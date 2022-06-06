@@ -46,12 +46,14 @@ export const Login =()=>{
             sendRequest()
             .then(data=>localStorage.setItem('userId',data.userAllReadRegister._id))
             
+            
             .then(()=>dispatch(authActions.login()))
             .then(()=>navgate('/blogs'))
             .then(data=>console.log("data",data))
         }
             
     }
+   
     return (
    <div >
    <form action="" onSubmit={handleSubmit}  >

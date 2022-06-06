@@ -17,7 +17,7 @@ export const UserBlogCards = (probs,userName) => {
   console.log('isUser:', isUser)
   console.log('x:',x)
 
-  
+  let name=localStorage.setItem('name',userName)
   
   
   let title,discription,username,avatarname,imageurl;

@@ -25,12 +25,15 @@ function App() {
    
    
     <Routes>
-  
-      <Route path='/login' element={<Login/>} exact/> 
+  {!isLoggedIn?
+      <Route path='/login' element={<Login/>} exact/> :
+      <>
       <Route path='/blogs' element={<Blog/>} exact/>
       <Route path='/myblogs' element={<UserBlogs/>} exact/>
       <Route path='/myBlogs/:id' element={<BlogsDtails/>} exact/> 
       <Route path='/blog/add' element={<Postblog/>} exact/> 
+      </>
+  }
     </Routes>
     
     </main> 
