@@ -3,9 +3,11 @@ import {Typography,Box,Button, InputLabel, TextField} from '@mui/material';
 import axios from 'axios';
 import AddAPhotoTwoToneIcon from '@mui/icons-material/AddAPhotoTwoTone';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import { useNavigate } from 'react-router-dom';
 let lables={mb:1,mt:2,fontSize:'20px' ,fontWeight:'bold',
 color:"#000"};
 export const Postblog =()=>{
+    let navigate=useNavigate()
     const [inputs,setinputs]=useState({
         title:"",
         description:"",
@@ -25,6 +27,7 @@ const blogPost=(e)=>{
   e.preventDefault();
   console.log(inputs);
   sendPostRequest()
+  .then(()=>navigate('/blogs'))
   .then((data=>console.log(data)))
   
 }

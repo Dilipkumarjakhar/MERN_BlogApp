@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 export const UserBlogCards = (probs,userName) => {
   let navigate=useNavigate()
   console.log('dilipprobs:', probs)
+  // let y=probs.blog._id;
   let x=JSON.stringify(probs.blog,['user']);
   console.log('x:',x)
   let url = x
@@ -16,12 +17,14 @@ export const UserBlogCards = (probs,userName) => {
   console.log('isUser:', isUser)
   console.log('x:',x)
 
-
-
-
+  
+  
+  
   let title,discription,username,avatarname,imageurl;
   if(probs.blog!=null){
-    console.log('probs:', probs)
+    let y=JSON.stringify(probs.blog,['_id']);
+    console.log('x:',y)
+    console.log('perticularuserprobs:', probs.blog._id)
     console.log('userName:', probs.userName)
    title=probs.blog.title;
    imageurl=probs.blog.image;
@@ -33,7 +36,7 @@ export const UserBlogCards = (probs,userName) => {
   }
 
   const handelEdit=(e)=>{
-    navigate(`/myBlogs/${x}`)
+    navigate(`/myBlogs/${probs.blog._id}`)
   }
   const handelDelete=()=>{
 

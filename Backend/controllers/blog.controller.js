@@ -74,7 +74,7 @@ export const editBlog=async(req,res)=>{
     if(!blog)
     return res.status(500).json({mess:"unable to edit your blog"})
 
-    return res.status(200).json({mess:"Blog Updated successfully"})
+    return res.status(200).json({mess:"Blog Updated successfully",blog})
 }
 export const getBlogId=async(req,res)=>{
     const id=req.params.id;

@@ -4,11 +4,14 @@ import CardMedia from '@mui/material/CardMedia';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteSweepTwoToneIcon from '@mui/icons-material/DeleteSweepTwoTone';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 
 export const BlogCards = (probs) => {
   let navigate=useNavigate()
   console.log('BlogCardsprobs:', probs)
+  let y=probs.blog._id;
+  console.log('BlogCardsprobs:', probs.blog._id)
   // let y=[];
   let x=JSON.stringify(probs.id,['_id']);
   console.log('x:',x)
@@ -23,10 +26,18 @@ export const BlogCards = (probs) => {
   let imageurl=probs.blog.image;
   
   const handelEdit=(e)=>{
-    navigate(`/myBlogs/${x}`)
+    navigate(`/myBlogs/${y}`)
+  }
+
+  const deleteRequest=async()=>{
+      let res=await axios.delete(`http://localhost:5000/api/${y}`);
+      let data=res.data;
+      return data;
   }
   const handelDelete=()=>{
-
+    deleteRequest()
+    .then(()=>navigate('/myblogs/'))
+    .then(()=>navigate('/blogs/'))
   }
   return (
     <div >
