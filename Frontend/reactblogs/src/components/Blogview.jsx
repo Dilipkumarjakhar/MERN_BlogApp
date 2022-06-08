@@ -5,13 +5,26 @@ import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteSweepTwoToneIcon from '@mui/icons-material/DeleteSweepTwoTone';
 // import {useNavigate} from 'react-router-dom';
 // import axios from 'axios';
-
-
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 export const Blogview = () => {
 
-    let title=probs.blog.title;
-    let description=probs.blog.discription;
-    let imageurl=probs.blog.image;
+  const isView=useSelector(state=>state.userView);
+  console.log('isView:', isView)
+  
+  const {state} = useLocation();
+  const { title,imageurl,username
+    ,avatarname,discription } = state; 
+    
+
+
+    const handelEdit=(e)=>{
+      // navigate(`/myBlogs/${probs.blog._id}`)
+    }
+    const handelDelete=()=>{
+  
+    }
+
 
   return (
     <div>
@@ -25,7 +38,7 @@ export const Blogview = () => {
            }}}>
 
 
-           {isUser && (
+           {/* {isUser && ( */}
              <Box display="flex">
                <IconButton onClick={handelEdit}
                sx={{marginLeft:"auto"}}>
@@ -38,11 +51,11 @@ export const Blogview = () => {
 
                </IconButton>
              </Box>
-           )}
+           {/* )} */}
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
-            {'userName'}
+            {avatarname}
           </Avatar>
         }
        
@@ -59,7 +72,7 @@ export const Blogview = () => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-        <b>{'userName'}</b> {":"}{description}
+        <b>{username}</b> {":"}{discription}
         </Typography>
       </CardContent>
       

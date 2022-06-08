@@ -4,10 +4,16 @@ import CardMedia from '@mui/material/CardMedia';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteSweepTwoToneIcon from '@mui/icons-material/DeleteSweepTwoTone';
 import {useNavigate} from 'react-router-dom';
-
+// import { Blogview } from './Blogview';
+import {authActions} from '../store/store';
+import {useDispatch,useSelector} from 'react-redux';
 export const UserBlogCards = (probs,userName) => {
+  let dispatch = useDispatch();
   let navigate=useNavigate()
   console.log('dilipprobs:', probs)
+
+  const isView=useSelector(state=>state.userView);
+  console.log('isView:', isView)
   // let y=probs.blog._id;
   let x=JSON.stringify(probs.blog,['user']);
   console.log('x:',x)
@@ -17,7 +23,7 @@ export const UserBlogCards = (probs,userName) => {
   console.log('isUser:', isUser)
   console.log('x:',x)
 
-  let name=localStorage.setItem('name',userName)
+  // let name=localStorage.setItem('name',userName)
   
   
   let title,discription,username,avatarname,imageurl;
@@ -42,6 +48,22 @@ export const UserBlogCards = (probs,userName) => {
 
   }
   
+  const viewpage=(title,imageurl,username
+    ,avatarname,discription)=>{
+      dispatch((authActions.userclicked()))
+      // console.log('viewclick',title,imageurl,username
+      // ,avatarname,discription)
+     
+      navigate('/viewBlogs',{
+        state:{title:title,
+          username:username,
+          imageurl:imageurl,
+          avatarname:avatarname,
+          discription:discription
+        },
+      
+    })
+  }
   return ((probs.blog!=null)?
     <div >
      
@@ -86,6 +108,11 @@ export const UserBlogCards = (probs,userName) => {
         image={imageurl}
         // image="https://images.pexels.com/photos/51953/mother-daughter-love-sunset-51953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt="Paella dish"
+        onClick={()=>viewpage(
+          title,imageurl,username
+          ,avatarname,discription)
+        
+        }
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

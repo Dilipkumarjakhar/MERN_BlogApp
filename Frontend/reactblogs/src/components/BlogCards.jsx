@@ -5,14 +5,28 @@ import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteSweepTwoToneIcon from '@mui/icons-material/DeleteSweepTwoTone';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-
+import { authActions } from '../store/store';
+import { useDispatch } from 'react-redux';
 
 export const BlogCards = (probs) => {
-  let navigate=useNavigate()
-  console.log('BlogCardsprobs:', probs)
+  let navigate=useNavigate();
+  let dispatch= useDispatch()
+  // console.log('BlogCardsprobs:', probs)
   let y=probs.blog._id;
-  console.log('BlogCardsprobs:', probs.blog._id)
-  // let y=[];
+  // console.log('BlogCardsprobs:', probs.blog._id)
+  
+  let name=JSON.stringify(probs.id,['name']);
+  console.log('BlogCardsprobsName:', name);
+  let userName,avatarname;
+  if(name){
+
+    let r=name.split(":");
+    let w=r[1].split("}")
+    userName=w[0];
+    avatarname=userName.charAt(1);
+    console.log(w[0])
+  }
+  
   let x=JSON.stringify(probs.id,['_id']);
   console.log('x:',x)
   let url = x
@@ -22,7 +36,7 @@ export const BlogCards = (probs) => {
   console.log('x:',x)
  
   let title=probs.blog.title;
-  let description=probs.blog.discription;
+  let discription=probs.blog.discription;
   let imageurl=probs.blog.image;
   
   const handelEdit=(e)=>{
@@ -39,6 +53,27 @@ export const BlogCards = (probs) => {
     .then(()=>navigate('/myblogs/'))
     .then(()=>navigate('/blogs/'))
   }
+
+  const viewpage=(title,imageurl,userName
+    ,avatarname,discription)=>{
+      console.log('viewclick',title,imageurl,userName
+      ,avatarname,discription)
+      dispatch((authActions.userclicked()))
+
+    navigate('/viewBlogs',{
+      state:{title:title,
+        imageurl:imageurl,
+        username:userName,
+        avatarname:avatarname,
+      discription:discription
+      }
+    })
+  }
+
+
+
+
+
   return (
     <div >
     
@@ -69,7 +104,7 @@ export const BlogCards = (probs) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
-            {'userName'}
+            {avatarname}
           </Avatar>
         }
        
@@ -83,10 +118,14 @@ export const BlogCards = (probs) => {
         image={imageurl}
         // image="https://images.pexels.com/photos/51953/mother-daughter-love-sunset-51953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt="Paella dish"
+        onClick={()=>viewpage(
+          title,imageurl,userName
+          ,avatarname,discription
+        )}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-        <b>{'userName'}</b> {":"}{description}
+        <b>{userName}</b> {":"}{discription}
         </Typography>
       </CardContent>
       

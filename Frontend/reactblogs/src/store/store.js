@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const authSlice=createSlice({
     name:'auth',
-    initialState:{isLoggedIn:false},
+    initialState:{isLoggedIn:false,userView:false},
     reducers:{
         login(state){
         state.isLoggedIn=true
@@ -10,6 +10,12 @@ const authSlice=createSlice({
         logout(state){
         state.isLoggedIn=false
     },
+    userclicked(state){
+        state.userView=true
+    },
+    userunclicked(state){
+        state.userView=false
+    }
 },
 });
 export const authActions=authSlice.actions

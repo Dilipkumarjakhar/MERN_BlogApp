@@ -5,14 +5,18 @@ import { Link } from 'react-router-dom';
 import {authActions} from '../store/store.js'
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
 import FilterVintageOutlinedIcon from '@mui/icons-material/FilterVintageOutlined';
-// import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+
+import { useNavigate } from 'react-router-dom';
 import './Headers.css'
 export const Headers = () => {
-  let user=localStorage.getItem(['useName'])
+  let user=localStorage.getItem(['useName']);
+  let navigate=useNavigate();
   console.log('user:', user)
   let dispatch=useDispatch()
   let [value,setvalue]=useState();
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
+  const isView=useSelector(state=>state.userView);
+  console.log('headerisView:', isView)
   let Name=localStorage.getItem('name');
   console.log(Name)
   return (
@@ -33,7 +37,8 @@ export const Headers = () => {
   <Typography sx={{marginLeft:1}} variant="h5">
   Blogs
   </Typography>
-{isLoggedIn && <Box marginLeft="auto" marginRight='auto'>
+{!isView && isLoggedIn && 
+<Box marginLeft="auto" marginRight='auto'>
   <Tabs value={value} 
   textColor='inherit' onChange={(e,val)=>setvalue(val)}>
 
@@ -44,13 +49,30 @@ export const Headers = () => {
   </Tabs>
   </Box>
 }
+{isView && 
+ <Box>
+ <Tabs value={value} 
+  textColor='inherit' onChange={(e,val)=>setvalue(val)}>
+ 
+ <Tab onClick={() =>{
+   navigate(-1)
+   dispatch((authActions.userunclicked()))
+ }}
+ label="GoBack>"></Tab>
+  
+
+ </Tabs>
+
+  
+ </Box>
+}
   <Box display='flex' marginLeft='auto' >
   {!isLoggedIn && <> <Button sx={{margin:1, borderRadius:5}} variant='contained' 
     color='primary' backgound='red'
     LinkComponent={Link} to='/login' >Login</Button>
     <Button sx={{margin:1, borderRadius:5}} variant='contained' 
     color='primary'
-    LinkComponent={Link} to='/myblog'>Signup</Button>
+    LinkComponent={Link} to='/login'>Signup</Button>
   </>}
    {isLoggedIn && 
    <>
@@ -59,7 +81,10 @@ export const Headers = () => {
    sx={{marginTop:2,marginRight:2}}
    ></InsertEmoticonOutlinedIcon>
    <Button 
-   onClick={()=>dispatch((authActions.logout()))}
+   onClick={()=>{
+   dispatch((authActions.logout()))
+   dispatch((authActions.userunclicked()))
+   }}
    sx={{margin:1, borderRadius:5}} variant='contained' 
     color='primary'
     LinkComponent={Link} to='/login' >Logout</Button>
