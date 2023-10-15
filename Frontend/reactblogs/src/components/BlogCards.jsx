@@ -9,6 +9,7 @@ import { authActions } from '../store/store';
 import { useDispatch } from 'react-redux';
 
 export const BlogCards = (probs) => {
+  let backend_url='https://dilipblog.onrender.com';
   let navigate=useNavigate();
   let dispatch= useDispatch()
   // console.log('BlogCardsprobs:', probs)
@@ -44,7 +45,7 @@ export const BlogCards = (probs) => {
   }
 
   const deleteRequest=async()=>{
-      let res=await axios.delete(`http://localhost:5000/api/${y}`);
+      let res=await axios.delete(`{backend_url}/api/${y}`);
       let data=res.data;
       return data;
   }

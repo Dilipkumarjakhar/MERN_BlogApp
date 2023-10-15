@@ -6,6 +6,7 @@ import {authActions} from '../store/store.js'
 import { useNavigate } from 'react-router-dom';
 
 export const Login =()=>{
+    let backend_url='https://dilipblog.onrender.com';
     const navgate=useNavigate();
     const dispatch=useDispatch();
     const [isSignup,setisSignup]=useState(false);
@@ -20,7 +21,7 @@ export const Login =()=>{
     }
 
     const sendRequest=async(type='login') =>{
-         let response=await axios.post(`http://localhost:5000/api/${type}`,{
+         let response=await axios.post(`{backend_url}/api/${type}`,{
               name:inputs.name,
               email:inputs.email,
               password:inputs.password,

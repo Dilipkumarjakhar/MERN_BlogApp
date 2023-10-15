@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 let lables={mb:1,mt:2,fontSize:'20px' ,fontWeight:'bold',
 color:"#000"};
 export const Postblog =()=>{
+    let url='https://dilipblog.onrender.com';
     let navigate=useNavigate()
     const [inputs,setinputs]=useState({
         title:"",
@@ -14,7 +15,7 @@ export const Postblog =()=>{
         image:"",
     });
     const sendPostRequest=async()=>{
-      let res=await axios.post('http://localhost:5000/api/blog',{
+      let res=await axios.post(`${url}/api/blog`,{
           title:inputs.title,
           discription:inputs.description,
           image:inputs.imageurl,

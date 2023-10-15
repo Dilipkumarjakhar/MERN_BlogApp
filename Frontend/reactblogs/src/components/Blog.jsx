@@ -3,7 +3,7 @@ import axios from 'axios';
 import {BlogCards} from './BlogCards'
 
 export const Blog =()=>{
-
+let url='https://dilipblog.onrender.com';
     let [blogs,setblogs]=useState()
     useEffect(()=>{
         resquesData()
@@ -15,7 +15,7 @@ export const Blog =()=>{
 
 
 const resquesData=async()=>{
-    let res=await axios.get('http://localhost:5000/api/blog')
+    let res=await axios.get(`${url}/api/blog`)
     .catch((err)=>{console.log(err)})
     let data=await res.data;
     return data;

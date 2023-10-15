@@ -2,6 +2,7 @@ import { useEffect,useState } from "react";
 import axios from "axios"
 import {UserBlogCards} from './userblogcard'
 export const UserBlogs =()=>{
+    let backend_url='https://dilipblog.onrender.com';
     let [data,setdata]=useState();
     let [newdata,setnewdata]=useState([]);
     let [userName,setuserName]=useState();
@@ -10,7 +11,7 @@ export const UserBlogs =()=>{
     
     
     const sendRequest=async()=>{
-        let res=await axios.get(`http://localhost:5000/api/user/${id}`)
+        let res=await axios.get(`{backend_url}/api/user/${id}`)
         .catch(err=>console.log(err));
         let data=await res.data;
         // console.log('data:', data)

@@ -7,6 +7,7 @@ import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 let lables={mb:1,mt:2,fontSize:'20px' ,fontWeight:'bold'};
 
 export const BlogsDtails =()=>{
+let backend_url='https://dilipblog.onrender.com';
     let navigate=useNavigate();
     const id=useParams().id;
     let [blog,setblog]=useState();
@@ -16,7 +17,7 @@ export const BlogsDtails =()=>{
     const fetchDetails = async()=>{
         console.log(id);
  
-    let res=await axios.get(`http://localhost:5000/api/${id}`)
+    let res=await axios.get(`{backend_url}/api/${id}`)
     .catch((err)=>console.log(err))
     let data=await res.data;
       return data;
@@ -45,7 +46,7 @@ export const BlogsDtails =()=>{
     }
 
     const sendRequestTOUpdate=async()=>{
-          let res=await axios.put(`http://localhost:5000/api/blog/edit/${id}`,{
+          let res=await axios.put(`{backend_url}/api/blog/edit/${id}`,{
               title:inputs.title,
               discription:inputs.discription,
             //   ------------------------------image-----------------
