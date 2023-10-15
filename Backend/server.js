@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 const app=express();
-const Port =process.env.PORT || 5000;
+const PORT=process.env.PORT || 6010;
 // const path=require('path')
 import {Dilip} from './xyz.js';
 import cors from 'cors';
@@ -28,9 +28,9 @@ app.use('/api',BlogRouter);
 // mongoose.connect('mongodb+srv://admin:KsZOGNptf9eNpsQ0@cluster0.cnnj6n7.mongodb.net/Blog?retryWrites=true')
 // mongoose.connect('mongodb+srv://admin:KsZOGNptf9eNpsQ0@cluster0.cnnj6n7.mongodb.net/?retryWrites=true&w=majority')
 mongoose.connect('mongodb+srv://admin:KsZOGNptf9eNpsQ0@cluster0.cnnj6n7.mongodb.net/?retryWrites=true&w=majority')
-.then(()=>app.listen(Port))
+.then(()=>app.listen(PORT))
 
-.then(()=>console.log('port is connected 5000'))
+.then(()=>console.log('port is connected ',PORT))
 .catch((err)=>console.log(err))
 
 console.log('hello')
