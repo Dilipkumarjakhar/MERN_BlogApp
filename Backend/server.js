@@ -13,6 +13,9 @@ import {RouterUser} from './routers/user.js';
 app.use(cors())
 app.use(express.json())
 
+app.use('/hello',(req,res)=>{
+    return res.send({"mess":"hello blog app"})
+})
 app.use('/api',RouterUser);
 app.use('/api',BlogRouter);
 
