@@ -21,7 +21,7 @@ export const Login =()=>{
     }
 
     const sendRequest=async(type='login') =>{
-         let response=await axios.post(`{backend_url}/api/${type}`,{
+         let response=await axios.post(`https://dilipblog.onrender.com/api/${type}`,{
               name:inputs.name,
               email:inputs.email,
               password:inputs.password,
