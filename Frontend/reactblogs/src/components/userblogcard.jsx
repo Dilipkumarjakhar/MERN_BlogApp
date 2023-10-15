@@ -73,6 +73,7 @@ export const UserBlogCards = (probs,userName) => {
            backgroundColor:'red',
            margin:'auto',
            borderRadius:2,
+           marginBottom:2,
            mt:6,padding:2,boxShadow:'5px 5px 10px #ccc',
            ":hover":{
                boxShadow:'0.1rem 0.1rem 0.4rem 0.2rem #111'

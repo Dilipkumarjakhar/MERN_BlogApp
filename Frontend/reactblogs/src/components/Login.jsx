@@ -56,7 +56,7 @@ export const Login =()=>{
    
     return (
    <div >
-   <form action="" onSubmit={handleSubmit}  >
+   <form action="" onSubmit={handleSubmit} style={{marginTop:'10rem'}}  >
        <Box maxWidth={400}
        display='flex' flexDirection={'column'}
        alignItems='center' justifyContent='center'

@@ -39,15 +39,17 @@ const blogPost=(e)=>{
     } 
     return (
         <div>
-        <form onSubmit={blogPost}>
+        <form onSubmit={blogPost}
+        style={{ marginTop:'8rem'}}>
 
        
    <Box border={1}
    maxHeight={500} 
    maxWidth={700}
    borderColor='green'
+   backgroundColor='#eeedf0'
    borderRadius={10}
-   boxShadow="10px 10px 20px #ccc" 
+   boxShadow='0rem 0rem 0.5rem 1px #111'
    padding={3} margin={'auto'} marginTop={5}
    width="80%" display='flex' flexDirection={'column'}
    >

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import Blog from '../models/blog.model'
-import User from '../models/user.model'
+import Blog from '../models/blogm.js'
+import User from '../models/userm.js'
 
 export const allBlogs=async(req,res)=>{
     let blog;

@@ -15,20 +15,21 @@ function App() {
   const isLoggedIn=useSelector(state=>state.isLoggedIn)
   console.log('isLoggedIn:', isLoggedIn)
   return (
-     <React.Fragment>
+     <React.Fragment style={{ background:'yellow'}}>
      <header>
 
     <Headers/>
     </header>
-    <main>
+    <main >
 
    
    
-    <Routes>
+    <Routes >
   {!isLoggedIn?
   <>
 
-      <Route path='/login' element={<Login/>} exact/>
+      <Route style={{ background:'yellow'}}
+      path='/login' element={<Login/>} exact/>
       <Route path='/' element={<Blog/>} exact/>
   </>:
       <>
